@@ -1,0 +1,544 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Kirellos George | Portfolio</title>
+  <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,400;1,400;1,700&family=DM+Sans:opsz,wght@9..40,300;9..40,400&display=swap" rel="stylesheet">
+
+  <style>
+
+    *, *::before, *::after {
+      margin: 0; padding: 0;
+      box-sizing: border-box;
+    }
+
+    :root {
+      --yellow: #F7E41C;
+      --dark:   #1a1a1a;
+      --brown:  #9a6b3a;
+      --white:  #ffffff;
+    }
+
+    html { scroll-behavior: smooth; }
+
+    body {
+      font-family: 'DM Sans', sans-serif;
+      color: var(--dark);
+      overflow-x: hidden;
+      height: 100vh;
+      overflow-y: scroll;
+      scroll-snap-type: y mandatory;
+    }
+
+    /* ── SKY BACKGROUND ── */
+    .sky-bg {
+      background: linear-gradient(175deg, #a0c5e6 0%, #b6d5f0 30%, #cae3fa 65%, #d5ecff 100%);
+      position: relative;
+    }
+    .sky-bg::before {
+      content: '';
+      position: absolute; inset: 0;
+      pointer-events: none;
+      background:
+        radial-gradient(ellipse 280px 100px at  6% 18%, rgba(255,255,255,0.90) 0%, transparent 60%),
+        radial-gradient(ellipse 200px  75px at 22% 12%, rgba(255,255,255,0.80) 0%, transparent 58%),
+        radial-gradient(ellipse 320px 115px at 72%  9%, rgba(255,255,255,0.88) 0%, transparent 62%),
+        radial-gradient(ellipse 210px  82px at 88% 32%, rgba(255,255,255,0.74) 0%, transparent 58%),
+        radial-gradient(ellipse 260px  95px at 50% 72%, rgba(255,255,255,0.70) 0%, transparent 62%),
+        radial-gradient(ellipse 170px  65px at 30% 86%, rgba(255,255,255,0.65) 0%, transparent 58%),
+        radial-gradient(ellipse 230px  85px at 80% 82%, rgba(255,255,255,0.68) 0%, transparent 60%);
+    }
+    .sky-bg > * { position: relative; z-index: 1; }
+
+    /* ── NAVBAR ── */
+    nav {
+      position: fixed;
+      top: 0; left: 0; right: 0;
+      display: flex;
+      justify-content: center;
+      gap: 10px;
+      padding: 14px 0;
+      z-index: 9999;
+      background: rgba(165, 208, 236, 0.88);
+      backdrop-filter: blur(10px);
+    }
+    nav a {
+      text-decoration: none;
+      color: var(--dark);
+      font-size: 12px;
+      padding: 5px 18px;
+      border: 1.5px rgba(255,255,255,.4) solid;
+      border-radius: 50px;
+      background: rgba(255,255,255,.4);
+      transition: background 0.18s ease, transform 0.15s ease;
+    }
+    nav a:hover { background: var(--yellow); transform: translateY(-1px); transition: 0.1s ease; }
+    nav a.active { background: var(--white); transition: 0.5s ease; }
+
+    /* ── SECTIONS ── */
+    section {
+      height: 100vh;
+      scroll-snap-align: start;
+      scroll-snap-stop: always;
+      position: relative;
+      overflow: hidden;
+      padding-top: 54px;
+    }
+
+    /* ── REVEAL ANIMATIONS ── */
+    .reveal {
+      opacity: 0;
+      transform: translateY(60px);
+      transition: opacity 0.7s ease, transform 0.7s ease;
+    }
+    .reveal.visible { opacity: 1; transform: translateY(0); }
+    .reveal-d1 { transition-delay: 0.1s; }
+    .reveal-d2 { transition-delay: 0.22s; }
+    .reveal-d3 { transition-delay: 0.36s; }
+    .reveal-d4 { transition-delay: 0.50s; }
+    .reveal-d5 { transition-delay: 0.64s; }
+
+    /* ══════════════════════════════════════════
+       SECTION 1: HERO
+    ══════════════════════════════════════════ */
+    #home {
+      display: flex;
+      flex-direction: column;
+      justify-content: center;
+      align-items: flex-start;
+      padding-left: 28%;
+    }
+
+    .folder {
+      position: absolute;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      gap: 6px;
+      cursor: default;
+      user-select: none;
+    }
+    .folder span { font-size: 11px; color: var(--dark); text-align: center; }
+
+    .f-graphic     { top: 100px; left: 20%; }
+    .f-graphic img { width: 200px; height: 200px; }
+    .f-video       { top: 440px; left: 10%; }
+    .f-video img   { width: 180px; height: 180px; }
+    .f-prog        { top: 315px; right: 8%; }
+    .f-prog img    { width: 220px; height: 220px; }
+
+    .hero-cursor { position: absolute; top: 510px; left: 62%; }
+
+    .hero-text {
+      margin-top: 100px;
+      margin-bottom: 100px;
+      margin-left: 100px;
+      margin-right: 100px;
+      max-width: 295px;
+    }
+
+    .hi {
+      font-family: 'Playfair Display', serif;
+      font-style: italic;
+      font-size: 40px;
+    }
+
+    .name-badge {
+      background: var(--yellow);
+      padding: 14px 28px;
+      font-family: 'Playfair Display', serif;
+      font-style: italic;
+      font-weight: 700;
+      font-size: 52px;
+      display: inline-block;
+      white-space: nowrap;
+      border-radius: 6px;
+    }
+
+    .welcome {
+      font-size: 13px;
+      line-height: 1.75;
+      color: #222;
+      max-width: 310px;
+      text-align: left;
+      margin-top: 18px;
+    }
+    .welcome u { text-decoration: underline; }
+
+    /* ══════════════════════════════════════════
+       SECTION 2: ABOUT
+    ══════════════════════════════════════════ */
+    #about {
+      background: #ffffff;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      gap: 60px;
+      flex-wrap: wrap;
+      padding-left: 8%; padding-right: 8%;
+    }
+    .about-photo {
+      flex-shrink: 0;
+      width: 400px; height: 400px;
+      border-radius: 20px;
+      border: 4px solid var(--brown);
+      overflow: hidden;
+      background: #c8a882;
+      display: flex; align-items: center; justify-content: center;
+    }
+    .about-photo img { width: 100%; height: 100%; object-fit: cover; }
+    .photo-ph { font-size: 80px; opacity: 0.4; }
+
+    .about-head { display: flex; align-items: baseline; flex-wrap: nowrap; margin-bottom: 24px; }
+    .word-about { font-family: 'DM Sans', sans-serif; font-weight: 300; font-size: 44px; letter-spacing: 10px; }
+    .word-me {
+      font-family: 'Playfair Display', serif;
+      font-style: italic; font-weight: 700; font-size: 46px;
+      position: relative; padding-right: 90px;
+    }
+    .word-me::after {
+      content: '';
+      position: absolute; bottom: 5px; left: -2px;
+      width: 100%; height: 25px;
+      background: var(--yellow);
+      z-index: -1;
+    }
+    .about-bio { font-size: 20px; line-height: 1.82; max-width: 470px; color: #222; }
+    .about-bio .hl { background: var(--yellow); padding: 0 2px; }
+
+    /* ══════════════════════════════════════════
+       SECTION 3: PROJECTS
+    ══════════════════════════════════════════ */
+    #projects {
+      background: #fff;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      justify-content: center;
+      padding-left: 5%; padding-right: 5%;
+    }
+    .proj-title {
+      font-family: 'DM Sans', sans-serif;
+      font-weight: 400; font-size: 42px; letter-spacing: 4px;
+      margin-bottom: 60px; text-align: center;
+    }
+    .proj-title .ital {
+      font-family: 'Playfair Display', serif;
+      font-style: italic; font-weight: 400; letter-spacing: 0;
+      background: var(--yellow);
+      padding: 2px 10px 5px; margin-left: 6px;
+    }
+    .proj-row { display: flex; justify-content: center; gap: 90px; flex-wrap: wrap; }
+    .proj-card { display: flex; flex-direction: column; align-items: center; gap: 18px; }
+    .proj-card .ico { width: 115px; height: 105px; display:flex; align-items:center; justify-content:center; }
+    .proj-card a { color: #1762c4; font-size: 15px; text-decoration: underline; font-family: 'DM Sans', sans-serif; }
+
+    /* ══════════════════════════════════════════
+       SECTION 4: CONTACT
+    ══════════════════════════════════════════ */
+    #contact {
+      display: flex; align-items: center; justify-content: center;
+      gap: 80px; flex-wrap: wrap;
+      padding-left: 8%; padding-right: 8%;
+    }
+    .cta h2 { font-family: 'DM Sans', sans-serif; font-weight: 400; font-size: 40px; margin-bottom: 10px; }
+    .cta .together {
+      display: inline-block; background: var(--yellow);
+      padding: 7px 18px;
+      font-family: 'Playfair Display', serif;
+      font-style: italic; font-weight: 700; font-size: 37px;
+      margin-bottom: 18px;
+    }
+    .cta p { font-size: 13px; }
+
+    .contact-card {
+      background: rgba(255,255,255,0.72);
+      border: 1px solid rgba(0,0,0,0.12);
+      border-radius: 10px; padding: 28px 26px;
+      min-width: 275px; max-width: 340px;
+      backdrop-filter: blur(10px);
+    }
+    .contact-card h3 { font-size: 18px; font-weight: 500; margin-bottom: 3px; }
+    .contact-card .phone { font-size: 12.5px; color: #555; margin-bottom: 22px; }
+    .field { margin-bottom: 13px; }
+    .field label { display: block; font-size: 12.5px; margin-bottom: 5px; }
+    .field input, .field textarea {
+      width: 100%; background: var(--yellow);
+      border: none; border-radius: 5px; padding: 10px 12px;
+      font-family: 'DM Sans', sans-serif; font-size: 12.5px;
+      outline: none; color: #222;
+      resize: none;
+    }
+    .field input::placeholder,
+    .field textarea::placeholder { color: rgba(0,0,0,0.42); }
+
+    /* ── SUBMIT BUTTON ── */
+    .submit-btn {
+      width: 100%;
+      margin-top: 6px;
+      padding: 11px 0;
+      background: var(--dark);
+      color: var(--yellow);
+      border: none;
+      border-radius: 5px;
+      font-family: 'DM Sans', sans-serif;
+      font-size: 13px;
+      font-weight: 500;
+      letter-spacing: 1px;
+      cursor: pointer;
+      transition: background 0.2s ease, transform 0.15s ease;
+    }
+    .submit-btn:hover {
+      background: #333;
+      transform: translateY(-1px);
+    }
+    .submit-btn:active { transform: translateY(0); }
+
+    /* success message */
+    .success-msg {
+      display: none;
+      margin-top: 12px;
+      font-size: 12px;
+      color: #1a7a1a;
+      text-align: center;
+      background: rgba(100,200,100,0.15);
+      border-radius: 5px;
+      padding: 8px;
+    }
+
+    /* ── PAGE DOTS ── */
+    .dots {
+      position: fixed;
+      right: 18px; top: 50%; transform: translateY(-50%);
+      display: flex; flex-direction: column; gap: 10px;
+      z-index: 9998;
+    }
+    .dot {
+      width: 8px; height: 8px;
+      border-radius: 50%;
+      background: rgba(0,0,0,0.22);
+      cursor: pointer;
+      transition: background 0.3s, transform 0.3s;
+    }
+    .dot.active { background: var(--dark); transform: scale(1.4); }
+
+  </style>
+</head>
+<body>
+
+<!-- NAVBAR -->
+<nav>
+  <a href="#home"     class="nav-link">home</a>
+  <a href="#about"    class="nav-link">About Me</a>
+  <a href="#projects" class="nav-link">My Project</a>
+  <a href="#contact"  class="nav-link">Contact Me</a>
+</nav>
+
+<!-- PAGE DOTS -->
+<div class="dots">
+  <div class="dot active" data-target="home"     title="Home"></div>
+  <div class="dot"        data-target="about"    title="About"></div>
+  <div class="dot"        data-target="projects" title="Projects"></div>
+  <div class="dot"        data-target="contact"  title="Contact"></div>
+</div>
+
+
+<!-- ══════ SECTION 1 — HERO ══════ -->
+<section id="home" class="sky-bg">
+
+  <div class="folder f-graphic reveal reveal-d1">
+    <img src="Folder.png" alt="Graphic Folder Icon" onerror="this.style.display='none'">
+    <span>Graphic Design</span>
+  </div>
+
+  <div class="folder f-video reveal reveal-d2">
+    <img src="Folder.png" alt="Video Folder Icon" onerror="this.style.display='none'">
+    <span>Video Editing</span>
+  </div>
+
+  <div class="folder f-prog reveal reveal-d2">
+    <img src="Folder.png" alt="Programming Folder Icon" onerror="this.style.display='none'">
+    <span>Programming</span>
+  </div>
+
+  <div class="hero-cursor reveal reveal-d3">
+    <svg width="28" height="34" viewBox="0 0 20 24" xmlns="http://www.w3.org/2000/svg">
+      <path d="M2 1 L2 19 L7 14 L11 23 L14 21.5 L10 12.5 L17 12.5 Z" fill="white" stroke="black" stroke-width="1.5" stroke-linejoin="round"/>
+    </svg>
+  </div>
+
+  <div class="hero-text">
+    <div class="hi reveal reveal-d1">HI,</div>
+    <div class="name-badge reveal reveal-d2">I'm Kirellos George</div>
+    <p class="welcome reveal reveal-d3">
+      <u>"Welcome to my portfolio.</u> This is a collection of my best work and the stories behind it. Sit back, explore, and enjoy the journey."
+    </p>
+  </div>
+
+</section>
+
+
+<!-- ══════ SECTION 2 — ABOUT ══════ -->
+<section id="about">
+
+  <div class="about-photo reveal reveal-d1">
+    <img src="1772903864169.jpg" alt="Kirellos George Photo" onerror="this.style.display='none'">
+  </div>
+
+  <div>
+    <div class="about-head reveal reveal-d2">
+      <span class="word-about">A b o u t</span>
+      <span class="word-me">ME</span>
+    </div>
+    <p class="about-bio reveal reveal-d3">
+      Hi, <span class="hl">I'm Kirellos</span>, a student passionate about graphic design and
+      programming. I enjoy creating clean, modern visuals and building digital projects that
+      combine creativity with technology. I'm always learning, improving my skills, and working
+      on ideas that turn concepts into real designs and experiences.
+    </p>
+  </div>
+
+</section>
+
+
+<!-- ══════ SECTION 3 — PROJECTS ══════ -->
+<section id="projects">
+
+  <h2 class="proj-title reveal reveal-d1">Projects <span class="ital">i did it</span></h2>
+
+  <div class="proj-row">
+
+    <div class="proj-card reveal reveal-d2">
+      <div class="ico">
+        <img src="grafic desgin.png" alt="Graphic Design Icon" onerror="this.style.display='none'">
+      </div>
+      <a href="https://drive.google.com/drive/folders/10glSJH7kuiBJE49gqKLwe-a3tGlpK2Lm?usp=drive_link" target="_blank" rel="noopener">Graphic Design</a>
+    </div>
+
+    <div class="proj-card reveal reveal-d3">
+      <div class="ico">
+        <img src="video edit.png" alt="Video Editing Icon" onerror="this.style.display='none'">
+      </div>
+      <a href="https://drive.google.com/drive/folders/1K_sSZ_vu_ghz_YgtnHEQjpQOgFjJ2upy?usp=drive_link" target="_blank" rel="noopener">Video Editing</a>
+    </div>
+
+    <div class="proj-card reveal reveal-d4">
+      <div class="ico">
+        <img src="Programing.png" alt="Programming Icon" onerror="this.style.display='none'">
+      </div>
+      <a href="https://drive.google.com/drive/folders/1xDHZA7aSv7Gr9uI-D-n25xDUPvkeKmBc?usp=drive_link" target="_blank" rel="noopener">Programming</a>
+    </div>
+
+  </div>
+</section>
+
+
+<!-- ══════ SECTION 4 — CONTACT ══════ -->
+<section id="contact" class="sky-bg">
+
+  <div class="cta">
+    <h2 class="reveal reveal-d1">Lets work</h2>
+    <div class="together reveal reveal-d2">TOGETHER</div>
+    <p class="reveal reveal-d3">I am Looking Forward to work together</p>
+  </div>
+
+  <div class="contact-card reveal reveal-d2">
+    <h3>Contact Me</h3>
+    <div class="phone">+201287308883</div>
+
+    <!-- ↓ Replace YOUR_FORM_ID with your Formspree form ID -->
+    <form id="contact-form" action="https://formspree.io/f/mqeyaerz" method="POST">
+
+      <div class="field">
+        <label>Your Name</label>
+        <input type="text" name="name" placeholder="Enter your name" required>
+      </div>
+
+      <div class="field">
+        <label>Your Email</label>
+        <input type="email" name="email" placeholder="Enter your Email" required>
+      </div>
+
+      <div class="field">
+        <label>Message</label>
+        <textarea name="message" placeholder="Write your message..." rows="3" required></textarea>
+      </div>
+
+      <button type="submit" class="submit-btn">SEND MESSAGE ↗</button>
+
+      <div class="success-msg" id="success-msg">
+        ✓ Message sent! I'll get back to you soon.
+      </div>
+
+    </form>
+  </div>
+
+</section>
+
+
+<script>
+  // ── CONTACT FORM SUBMIT ──
+  const form = document.getElementById('contact-form');
+  const successMsg = document.getElementById('success-msg');
+
+  form.addEventListener('submit', async (e) => {
+    e.preventDefault();
+    const btn = form.querySelector('.submit-btn');
+    btn.textContent = 'Sending...';
+    btn.disabled = true;
+
+    const data = new FormData(form);
+    const response = await fetch(form.action, {
+      method: 'POST',
+      body: data,
+      headers: { 'Accept': 'application/json' }
+    });
+
+    if (response.ok) {
+      form.reset();
+      successMsg.style.display = 'block';
+      btn.textContent = 'SEND MESSAGE ↗';
+      btn.disabled = false;
+    } else {
+      btn.textContent = 'Failed — try again';
+      btn.disabled = false;
+    }
+  });
+
+  // ── REVEAL ANIMATIONS ──
+  const reveals = document.querySelectorAll('.reveal');
+  const observer = new IntersectionObserver((entries) => {
+    entries.forEach(entry => {
+      if (entry.isIntersecting) { entry.target.classList.add('visible'); }
+      else { entry.target.classList.remove('visible'); }
+    });
+  }, { threshold: 0.15, root: null });
+  reveals.forEach(el => observer.observe(el));
+
+  // ── ACTIVE NAV + DOTS ──
+  const sections = document.querySelectorAll('section');
+  const navLinks = document.querySelectorAll('.nav-link');
+  const dots     = document.querySelectorAll('.dot');
+
+  const sectionObserver = new IntersectionObserver((entries) => {
+    entries.forEach(entry => {
+      if (!entry.isIntersecting) return;
+      const id = entry.target.id;
+      navLinks.forEach(a => a.classList.toggle('active', a.getAttribute('href') === '#' + id));
+      dots.forEach(d => d.classList.toggle('active', d.dataset.target === id));
+    });
+  }, { threshold: 0.5, root: null });
+  sections.forEach(s => sectionObserver.observe(s));
+
+  // ── DOT CLICK ──
+  dots.forEach(dot => {
+    dot.addEventListener('click', () => {
+      const target = document.getElementById(dot.dataset.target);
+      if (target) target.scrollIntoView({ behavior: 'smooth' });
+    });
+  });
+</script>
+
+</body>
+</html>
