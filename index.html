@@ -5,7 +5,6 @@
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>Kirellos George | Portfolio</title>
   <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,400;1,400;1,700&family=DM+Sans:opsz,wght@9..40,300;9..40,400&display=swap" rel="stylesheet">
-  <link rel="icon" type="image/png" href="Folder.png">
 
   <style>
 
@@ -324,11 +323,55 @@
     }
     .dot.active { background: var(--dark); transform: scale(1.4); }
 
+    /* ══════════════════════════════════════════
+       NEW FEATURE: MOBILE RESPONSIVENESS
+    ══════════════════════════════════════════ */
+    @media (max-width: 768px) {
+      /* Navigation Adjustments */
+      nav { gap: 5px; padding: 10px 5px; }
+      nav a { font-size: 10px; padding: 5px 12px; }
+      .dots { display: none; } /* Hide dots on small screens to save space */
+
+      /* Hero Section Adjustments */
+      #home { padding-left: 5%; align-items: center; text-align: center; }
+      .hero-text { margin: 0; padding-top: 80px; }
+      .hi { font-size: 30px; }
+      .name-badge { font-size: 28px; padding: 10px 20px; white-space: normal; }
+      .welcome { margin: 18px auto; text-align: center; font-size: 12px; }
+
+      /* Scale down and reposition folders for mobile */
+      .f-graphic { top: 70px; left: 5%; transform: scale(0.6); }
+      .f-video { top: auto; bottom: 80px; left: 5%; transform: scale(0.6); }
+      .f-prog { top: 70px; right: 5%; transform: scale(0.6); }
+      .hero-cursor { display: none; }
+
+      /* About Section Adjustments */
+      #about { flex-direction: column; gap: 30px; padding-top: 80px; padding-bottom: 40px; }
+      .about-photo { width: 280px; height: 280px; }
+      .word-about { font-size: 30px; letter-spacing: 5px; }
+      .word-me { font-size: 32px; padding-right: 40px; }
+      .about-bio { font-size: 16px; text-align: center; }
+
+      /* Projects Adjustments */
+      .proj-title { font-size: 28px; margin-bottom: 30px; }
+      .proj-row { gap: 40px; }
+
+      /* Contact Adjustments */
+      #contact { flex-direction: column; gap: 40px; padding-top: 80px; height: auto; padding-bottom: 60px; }
+      .cta { text-align: center; }
+      .cta h2 { font-size: 30px; }
+      .together { font-size: 28px; }
+      .contact-card { width: 90%; min-width: unset; }
+      
+      /* Disable snap scrolling on mobile for smoother reading */
+      body { scroll-snap-type: none; height: auto; }
+      section { height: auto; min-height: 100vh; padding-bottom: 40px; }
+    }
+
   </style>
 </head>
 <body>
 
-<!-- NAVBAR -->
 <nav>
   <a href="#home"     class="nav-link">home</a>
   <a href="#about"    class="nav-link">About Me</a>
@@ -336,16 +379,14 @@
   <a href="#contact"  class="nav-link">Contact Me</a>
 </nav>
 
-<!-- PAGE DOTS -->
 <div class="dots">
   <div class="dot active" data-target="home"     title="Home"></div>
-  <div class="dot"        data-target="about"    title="About"></div>
-  <div class="dot"        data-target="projects" title="Projects"></div>
-  <div class="dot"        data-target="contact"  title="Contact"></div>
+  <div class="dot"         data-target="about"    title="About"></div>
+  <div class="dot"         data-target="projects" title="Projects"></div>
+  <div class="dot"         data-target="contact"  title="Contact"></div>
 </div>
 
 
-<!-- ══════ SECTION 1 — HERO ══════ -->
 <section id="home" class="sky-bg">
 
   <div class="folder f-graphic reveal reveal-d1">
@@ -380,7 +421,6 @@
 </section>
 
 
-<!-- ══════ SECTION 2 — ABOUT ══════ -->
 <section id="about">
 
   <div class="about-photo reveal reveal-d1">
@@ -403,7 +443,6 @@
 </section>
 
 
-<!-- ══════ SECTION 3 — PROJECTS ══════ -->
 <section id="projects">
 
   <h2 class="proj-title reveal reveal-d1">Projects <span class="ital">i did it</span></h2>
@@ -435,7 +474,6 @@
 </section>
 
 
-<!-- ══════ SECTION 4 — CONTACT ══════ -->
 <section id="contact" class="sky-bg">
 
   <div class="cta">
@@ -448,7 +486,6 @@
     <h3>Contact Me</h3>
     <div class="phone">+201287308883</div>
 
-    <!-- ↓ Replace YOUR_FORM_ID with your Formspree form ID -->
     <form id="contact-form" action="https://formspree.io/f/mqeyaerz" method="POST">
 
       <div class="field">
