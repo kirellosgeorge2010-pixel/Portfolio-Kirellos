@@ -557,7 +557,7 @@
     @media (max-width: 900px) {
       .hero { flex-direction: column; }
       .hero-left, .hero-right { border-right: none; border-bottom: var(--border-width) solid var(--border-color); }
-      .code-box { left: 20px; bottom: 20px; width: calc(100% - 40px); }
+      .code-box { position: relative; left: 0; bottom: 0; width: 100%; margin-top: 30px; }
       .main-grid { flex-direction: column; }
       .projects-col { border-right: none; border-bottom: var(--border-width) solid var(--border-color); }
       .experience-row { flex-direction: column; }
@@ -565,6 +565,33 @@
       .exp-title h2 { transform: none; }
       .exp-content { border-right: none; border-bottom: var(--border-width) solid var(--border-color); }
       .nav-links { display: none; } /* Hide center nav on small mobile */
+    }
+
+    @media (max-width: 600px) {
+      header { flex-direction: column; }
+      .logo-block { border-right: none; border-bottom: var(--border-width) solid var(--border-color); justify-content: center; }
+      .contact-block { border-left: none; justify-content: center; }
+      
+      .hero-left { padding: 30px 20px; }
+      .hero-left h1 { font-size: 40px; }
+      .hero-buttons { flex-direction: column; width: 100%; gap: 10px; }
+      .brutal-btn { text-align: center; }
+      
+      .photo-container { width: 100%; max-width: 250px; height: 320px; }
+      
+      .skills-bar { flex-direction: column; }
+      .skills-title { border-right: none; border-bottom: var(--border-width) solid var(--border-color); align-items: center; }
+      .skills-scroll { flex-wrap: wrap; gap: 20px; }
+      
+      .project-featured { padding: 20px; }
+      .exp-content { padding: 30px 20px; }
+      .contact-section { padding: 30px 15px; }
+      .contact-card { padding: 20px; }
+      
+      footer { flex-direction: column; }
+      .footer-left { border-right: none; border-bottom: var(--border-width) solid var(--border-color); text-align: center; }
+      .footer-center { padding: 20px; border-bottom: var(--border-width) solid var(--border-color); }
+      .footer-right { border-left: none; justify-content: center; }
     }
   </style>
 </head>
